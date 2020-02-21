@@ -4,18 +4,18 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class DrawingArea; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class DrawingArea : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    DrawingArea(QWidget *parent = nullptr);
+    ~DrawingArea();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::DrawingArea *ui;
 };
 #endif // MAINWINDOW_H
