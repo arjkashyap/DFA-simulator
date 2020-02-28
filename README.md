@@ -10,3 +10,4 @@
 <p>
 This is a software which lets you build DFA diagrams on a drawing area and test it with custom input strings.
 </p>
+
