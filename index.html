@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
-<body>
-    <div class="jumbotron" style="padding: 4px; margin-top: 3px;">
+<body style="background-color: #b4c3eb;">
+    <div class="jumbotron" style="background-color: aliceblue; padding: 4px; margin-top: 3px;">
         <div class="hd container">
           <h1 class="hd1 display-6">DFA - Simulator</h1>
           <p class="lead"> Deterministic Finite Machine tester and simulator. Create and Test DFA </p>
@@ -22,14 +22,15 @@
       position: relative;
       left: 20%;
       ">
-        <input type="button" class="btn-sm btn-primary" value="Add State">
+        <input type="button" class="btn-sm btn-primary" value="Add State" onclick="addNode()">
         <input type="button" class="btn-sm btn-primary" value="Connect State">
         <input type="button" class="btn-sm btn-primary" value="Del State">
       </div>
       <!-- Drawing Area -->
       <div class="container">
-        <canvas id="myCanvas" width="1200" height="600" style="border:1px solid #000000;">
-        </canvas> 
+        <canvas id="canvas" width="1200" height="600" style="background-color: aliceblue; border:1px solid #000000;">
+        </canvas>
+        <p id="canvas-err"></p>
       </div>
     <!-- Scripts-->
     <script src="./simulator.js"></script>
