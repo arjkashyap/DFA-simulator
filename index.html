@@ -5,10 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFA Simulator</title>
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+
+    <!-- Jquery-->
+    <link rel="stylesheet" href="./jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.structure.css">
+    
+  <style>
+      .draw-area{
+        background-color: aliceblue;
+        height: 600px; width: 1200px;
+        position: relative;
+      }
+
+      .node{
+        border: #1f3c7d 2px solid;
+        text-align: center;
+        border-radius: 40%;
+        background-color: #577ee8;
+        position: relative;
+        width: 100px;
+        height: 60px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .node p{
+        color: white;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+  </style>
+
 </head>
 <body style="background-color: #b4c3eb;">
     <div class="jumbotron" style="background-color: aliceblue; padding: 4px; margin-top: 3px;">
@@ -17,27 +48,30 @@
           <p class="lead"> Deterministic Finite Machine tester and simulator. Create and Test DFA </p>
         </div>
       </div>
-      <div class="btn container" style="
-      align-items: center;
-      position: relative;
-      left: 20%;
-      ">
-        <input type="button" class="btn-sm btn-primary" value="Add State" onclick="addNode()">
-        <input type="button" class="btn-sm btn-primary" value="Connect State">
-        <input type="button" class="btn-sm btn-primary" value="Del State">
-      </div>
+      
       <!-- Drawing Area -->
-      <div class="container">
-        <canvas id="canvas" width="1200" height="600" style="background-color: aliceblue; border:1px solid #000000;">
-        </canvas>
-        <p id="canvas-err"></p>
+      <div class="draw-area container" >
+        <div class="btn-container">
+          <input type="button" id="add-state" class="btn-sm btn-primary" value="Add State">
+          <input type="button" class="btn-sm btn-primary" value="Connect State">
+          <input type="button" class="btn-sm btn-primary" value="Del State">
+          </div>
+          
+        
+       
+       
+       
+      
       </div>
-    <!-- Scripts-->
-    <script src="./simulator.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <!-- Scripts-->
+    <script src="./js/jquery-3.4.1.min.js" ></script>
+    <script src="./index.js"></script>
+    <script src="./jquery-ui/jquery-ui.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js" ></script>
     <hr>
+
+
     <footer class="page-footer font-small blue pt-4">
       <!-- Footer Links -->
       <div class="container-fluid text-center text-md-left">  
