@@ -12,6 +12,7 @@ $(document).ready(function(){
 
     // Button functions
     // Add Node on button click
+    
     $('#add-state').click(function(){
         
         // Generate a node Id 
@@ -19,6 +20,7 @@ $(document).ready(function(){
         $('.draw-area').append(`<div id='q${nodeId}' class='node'> <p> Q${nodeId} </p>  </div>`);
         $(".node").draggable();
         states.push({ id: nodeId, connectedNodes: [], selected: false });
+
     });
 
     // Delete node function
@@ -31,12 +33,25 @@ $(document).ready(function(){
         } )
     })
 
+    // Connect state button function
+    $('#connect-state').click( function(){
+        let a = $('#q0').offset();
+        let b = $('#q0').offset();
+        console.log(`Postion of div a is ${a.left} and ${a.top}`);
+        $('.vertices').append(`<line x1="${a.left}" y1="${a.top}" x2="${b.left}" y2="${b.top}" style="stroke:rgb(255,0,0);stroke-width:2" />`);
+    } );
+
     // Functions if the node is selected
     function nodeCheckClick(){
          states.forEach( n =>{
              $(`#q${n.id}`).mousedown( () => {
                 n.selected = true; 
                 disSelectAll(n);
+                let pos = $(`#q${n.id}`).position();
+                console.log(`Position: X: ${pos.left} and Y: ${pos.top}`)
+                let con = $('.draw-area').position();
+                //let ry = pos.top - con.top - 40; 
+                //console.log(` real position y; ${ry}`)
                });
          });
      }
@@ -79,6 +94,18 @@ $(document).ready(function(){
             else
                 return tmpId;
         }
+    }
+
+    // Functions for drawing vertices between two states
+    // Circle at the end of the virtex to show
+    function drawCircle(x, y, radius, color) {
+        var svg = createSVG();
+            var shape = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        shape.setAttributeNS(null, "cx", x);
+        shape.setAttributeNS(null, "cy", y);
+        shape.setAttributeNS(null, "r",  radius);
+        shape.setAttributeNS(null, "fill", color);
+        svg.appendChild(shape);
     }
 })
 

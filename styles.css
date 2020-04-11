@@ -3,6 +3,7 @@
     font-family: monospace;
     text-align: center;
     font-size: small;
+    font-style: oblique;
     
 }
 
@@ -13,3 +14,28 @@
     font-family: monospace;
     
 }
+
+.draw-area{
+        
+    background-color: aliceblue;
+    height: 600px; width: 1200px;
+    position: relative;
+  }
+
+  .node{
+    border: #1f3c7d 2px solid;
+    text-align: center;
+    border-radius: 40%;
+    background-color: #577ee8;
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .node p{
+    color: white;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }

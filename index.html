@@ -8,37 +8,11 @@
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
 
+    
     <!-- Jquery-->
     <link rel="stylesheet" href="./jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.css">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.structure.css">
-    
-  <style>
-      .draw-area{
-        background-color: aliceblue;
-        height: 600px; width: 1200px;
-        position: relative;
-      }
-
-      .node{
-        border: #1f3c7d 2px solid;
-        text-align: center;
-        border-radius: 40%;
-        background-color: #577ee8;
-        position: relative;
-        width: 100px;
-        height: 60px;
-        margin: 0 auto;
-        padding: 10px;
-      }
-
-      .node p{
-        color: white;
-        font-weight: bold;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-      }
-
-  </style>
 
 </head>
 <body style="background-color: #b4c3eb;">
@@ -47,23 +21,24 @@
           <h1 class="hd1 display-6">DFA - Simulator</h1>
           <p class="lead"> Deterministic Finite Machine tester and simulator. Create and Test DFA </p>
         </div>
-      </div>
-      
-      <!-- Drawing Area -->
-      <div class="draw-area container" >
-        <div class="btn-container">
-          <input type="button" id="add-state" class="btn-sm btn-primary" value="Add State">
-          <input type="button" class="btn-sm btn-primary" value="Connect State">
-          <input type="button" id="del-state" class="btn-sm btn-primary" value="Del State">
-          </div>
-          
-        
-       
-       
-       
-      
-      </div>
+    </div>
 
+    <div class="btn-container container">
+      <input type="button" id="add-state" class="btn-sm btn-primary" value="Add State">
+      <input type="button" id="connect-state" class="btn-sm btn-primary" value="Connect State">
+      <input type="button" id="del-state" class="btn-sm btn-primary" value="Del State">
+    </div>
+
+    <!-- Drawing Area -->
+    <div class="draw-area container" >
+
+      <svg  class="vertices" height="210" width="500">
+        <path   d="M 400 80 C 28 87 81 0 10 10" fill="none" stroke="#456"/>
+        <!-- <line x1="190.6999969482422" y1="238.54998779296875" x2="-244.99998474121094" y2="238.54998779296875" style="stroke:rgb(255,0,0);stroke-width:2"></line> -->
+      </svg> 
+  
+    </div>
+x
     <!-- Scripts-->
     <script src="./js/jquery-3.4.1.min.js" ></script>
     <script src="./index.js"></script>
