@@ -35,10 +35,11 @@ $(document).ready(function(){
 
     // Connect state button function
     $('#connect-state').click( function(){
-        let a = $('#q0').offset();
-        let b = $('#q0').offset();
-        console.log(`Postion of div a is ${a.left} and ${a.top}`);
-        $('.vertices').append(`<line x1="${a.left}" y1="${a.top}" x2="${b.left}" y2="${b.top}" style="stroke:rgb(255,0,0);stroke-width:2" />`);
+        console.log('connect called')
+        let a = $('#q0')
+        let b = $('#q1')
+        //$('.vertices').appendchild  (`<path   d="M ${a.left.toFixed(2)} ${a.top.toFixed(2)} C 28 87 81 0 ${b.left.toFixed(2)} ${b.top.toFixed(2)}" fill="none" stroke="#456"/>`)
+        drawCurvedLine('q0', 'q1');
     } );
 
     // Functions if the node is selected
@@ -47,11 +48,6 @@ $(document).ready(function(){
              $(`#q${n.id}`).mousedown( () => {
                 n.selected = true; 
                 disSelectAll(n);
-                let pos = $(`#q${n.id}`).position();
-                console.log(`Position: X: ${pos.left} and Y: ${pos.top}`)
-                let con = $('.draw-area').position();
-                //let ry = pos.top - con.top - 40; 
-                //console.log(` real position y; ${ry}`)
                });
          });
      }
@@ -106,6 +102,11 @@ $(document).ready(function(){
         shape.setAttributeNS(null, "r",  radius);
         shape.setAttributeNS(null, "fill", color);
         svg.appendChild(shape);
+    }
+
+    function drawCurvedLine(id1, id2){
+        console.log(id1, id2)
+       $(`#${id1}`).connections({ to: `#${id2}` });
     }
 })
 

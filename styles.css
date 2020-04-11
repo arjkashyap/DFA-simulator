@@ -16,10 +16,11 @@
 }
 
 .draw-area{
-        
     background-color: aliceblue;
-    height: 600px; width: 1200px;
+    height: 600px; 
+    width: 600px;
     position: relative;
+    border: rgb(38, 38, 107) 5px solid;
   }
 
   .node{
