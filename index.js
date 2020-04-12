@@ -18,9 +18,17 @@ $(document).ready(function(){
         
         // Generate a node Id 
         const nodeId = getNodeId()
-        $('.draw-area').append(`<div id='q${nodeId}' class='node'> <p> Q${nodeId} </p>  </div>`);
+        let nodeText = `<div 
+                id='q${nodeId}' class='node'> 
+                    <p> Q${nodeId} <br> <span id="connected-0"></span> 
+                    <span id="seperator"></span> 
+                    <span id="connected-1"></span> 
+                    <p> 
+                </div>`
+       
+        $('.draw-area').append(nodeText);
         $(".node").draggable();
-        states.push({ id: nodeId, connectedNodes: [], selected: false });
+        states.push({ id: nodeId, connectedNodes: [], selected: false, final:false });
 
     });
 
@@ -39,27 +47,38 @@ $(document).ready(function(){
 
     // Connect states with input
     $('#add-transition-btn').click( function(){
-        const frm = $('#from-state').val();
-        const input = $('#input').val();
-        const to = $('#to-state').val();
-        
-        if(!(states.includes(frm)))
-            console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
-        else if( !(states.includes(to)) )
-            console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
+        let frm = $('#from-state').val();
+        let input = $('#state-input').val();
+        let to = $('#to-state').val();
+        console.log(frm.toLowerCase())     
+        frm = frm.toLowerCase();
+        to = to.toLowerCase();
 
         $(`#${frm}`).connections({ to: `#${to}` });
         $('#connect-form').modal('hide');
-    } );
+      
+           
+        if(!(states.includes(frm[1])))
+            console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
+        else if( !(states.includes(to[1])) )
+            console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
 
+        
+        console.log(frm);
+       
+    } );
 
     // Functions if the node is selected
     function nodeCheckClick(){
          states.forEach( n =>{
              $(`#q${n.id}`).mousedown( () => {
-                n.selected = true; 
+                n.selected = true;
                 disSelectAll(n);
                });
+            // Update connection when the drag is complete
+            $(`#q${n.id}`).mouseup( () => {
+                $(`#q${n.id}`).connections('update');
+            } )
          });
      }
     setInterval(nodeCheckClick, 200);
@@ -102,19 +121,6 @@ $(document).ready(function(){
                 return tmpId;
         }
     }
-
-    // Functions for drawing vertices between two states
-    // Circle at the end of the virtex to show
-    function drawCircle(x, y, radius, color) {
-        var svg = createSVG();
-            var shape = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        shape.setAttributeNS(null, "cx", x);
-        shape.setAttributeNS(null, "cy", y);
-        shape.setAttributeNS(null, "r",  radius);
-        shape.setAttributeNS(null, "fill", color);
-        svg.appendChild(shape);
-    }
-
 
     // Print Messaages in console
     function console_msg(msg, type=0){

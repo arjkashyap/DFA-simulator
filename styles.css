@@ -29,8 +29,8 @@
     border-radius: 40%;
     background-color: #577ee8;
     position: absolute;
-    width: 100px;
-    height: 60px;
+    width: 120px;
+    height: 70px;
     margin: 0 auto;
     padding: 10px;
   }
@@ -63,4 +63,10 @@
 
 #msg{
   color: rgb(47, 155, 119);
+}
+
+#connected{
+  text-align: center;
+  color: white;
+  font-size: 12px;
 }
