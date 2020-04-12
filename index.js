@@ -10,9 +10,10 @@ let states = []
 
 $(document).ready(function(){
 
+    console_msg('Press Add state button to Add a new node in the diagram');
+
     // Button functions
     // Add Node on button click
-    
     $('#add-state').click(function(){
         
         // Generate a node Id 
@@ -33,14 +34,24 @@ $(document).ready(function(){
         } )
     })
 
-    // Connect state button function
-    $('#connect-state').click( function(){
-        console.log('connect called')
-        let a = $('#q0')
-        let b = $('#q1')
-        //$('.vertices').appendchild  (`<path   d="M ${a.left.toFixed(2)} ${a.top.toFixed(2)} C 28 87 81 0 ${b.left.toFixed(2)} ${b.top.toFixed(2)}" fill="none" stroke="#456"/>`)
-        drawCurvedLine('q0', 'q1');
+    // Open state transition modal
+    $('#connect-state').click( () => $('#connect-form').modal('show') );
+
+    // Connect states with input
+    $('#add-transition-btn').click( function(){
+        const frm = $('#from-state').val();
+        const input = $('#input').val();
+        const to = $('#to-state').val();
+        
+        if(!(states.includes(frm)))
+            console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
+        else if( !(states.includes(to)) )
+            console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
+
+        $(`#${frm}`).connections({ to: `#${to}` });
+        $('#connect-form').modal('hide');
     } );
+
 
     // Functions if the node is selected
     function nodeCheckClick(){
@@ -104,9 +115,19 @@ $(document).ready(function(){
         svg.appendChild(shape);
     }
 
-    function drawCurvedLine(id1, id2){
-        console.log(id1, id2)
-       $(`#${id1}`).connections({ to: `#${id2}` });
+
+    // Print Messaages in console
+    function console_msg(msg, type=0){
+        // type 0: Instruction
+        // type 1 : Warning
+        // type 2 : Error
+        let color = "blue";
+        if(type == 1)
+            color = "#068671";
+        const cons = document.getElementById('msg');
+     
+        cons.textContent = msg;
+        cons.style.color = color
     }
 })
 

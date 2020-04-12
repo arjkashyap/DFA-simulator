@@ -40,3 +40,27 @@
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
+
+.console{
+  height: 25px;
+  border: #1f3c7d 2px solid;
+  margin-bottom: 0;
+  margin-top: 1px;
+  background-color: rgb(206, 206, 238);
+}
+
+.console p{
+  color: #c20e0e;
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.btn-container{
+  align-items: center;
+}
+
+#msg{
+  color: rgb(47, 155, 119);
+}

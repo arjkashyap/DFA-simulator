@@ -8,7 +8,9 @@
 			options = $.extend(true, {
 				borderClasses: {},
 				'class': 'connection',
-				css: {},
+				css: {
+					border: '3px solid red'
+				},
 				from: this,
 				tag: 'connection',
 				to: this,

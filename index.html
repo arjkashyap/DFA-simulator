@@ -25,20 +25,53 @@
 
     <div class="btn-container container">
       <input type="button" id="add-state" class="btn-sm btn-primary" value="Add State">
-      <input type="button" id="connect-state" class="btn-sm btn-primary" value="Connect State">
+      <input type="button" id="connect-state" class="btn-sm btn-primary" value="State Transition">
       <input type="button" id="del-state" class="btn-sm btn-primary" value="Del State">
+      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#connect-form">
+        Launch demo modal
+      </button> -->
     </div>
-
+    <div class="console container">
+        <p>Console: <span id="msg" ></span></p>
+    </div>
     <!-- Drawing Area -->
     <div class="draw-area container" >
-
-      <svg  class="vertices">
-        <!-- <path   d="M 400 80 C 28 87 81 0 10 10" fill="none" stroke="#456"/> -->
-        <!-- <path d="M 20 100 Q 220 100 420 100" fill="none" stroke="red"></path> -->
-        <!-- <line x1="190.6999969482422" y1="238.54998779296875" x2="-244.99998474121094" y2="238.54998779296875" style="stroke:rgb(255,0,0);stroke-width:2"></line> -->
-      </svg> 
-  
+      
+      <!-- Modal for state connection -->
+      <div class="modal fade" id="connect-form" tabindex="-1" role="dialog" aria-labelledby="State Transition" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add a State Transition</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label id ="from-state-lbl">From </label>
+                  <input type="text" class="form-control form-control-sm" id="from-state" placeholder="Name of the state which takes the input">
+                </div>
+                <div class="form-group">
+                  <label id ="input-lbl"> Input </label>
+                  <input type="text" class="form-control form-control-sm" id="input" placeholder="Enter the input for which the transition responds">
+                </div>
+                <div class="form-group">
+                  <label id ="to-state-lbl">To State </label>
+                  <input type="text" class="form-control form-control-sm" id="to-state" placeholder="Name of the state where the transition takes">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" id="add-transition-btn" class="btn btn-primary">Connect states</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
 
     <!-- Scripts-->
     <script src="./js/jquery-3.4.1.min.js" ></script>
@@ -48,22 +81,17 @@
     <script src="./bootstrap/js/bootstrap.min.js" ></script>
     <hr>
 
-
-    <footer class="page-footer font-small blue pt-4">
-      <!-- Footer Links -->
-      <div class="container-fluid text-center text-md-left">  
+<!-- Footer -->
+      <footer class="page-footer font-small blue pt-4">
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">  
+        </div>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+          <a href="http://bing101.github.io"> Bing</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
       
-      </div>
-    
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="http://bing101.github.io"> Bing</a>
-      </div>
-      <!-- Copyright -->
-    
-    </footer>
-    
   </body>
-
-
 </html>
