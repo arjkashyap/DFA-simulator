@@ -30,12 +30,13 @@
     background-color: #577ee8;
     position: absolute;
     width: 120px;
-    height: 70px;
+    height: 90px;
     margin: 0 auto;
     padding: 10px;
   }
 
   .node p{
+    margin: 0;
     color: white;
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -68,5 +69,9 @@
 #connected{
   text-align: center;
   color: white;
+  font-size: 12px;
+}
+
+.input-details{
   font-size: 12px;
 }

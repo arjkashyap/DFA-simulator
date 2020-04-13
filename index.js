@@ -5,7 +5,12 @@ states{
     connectedNodes[],
     selected
 }
+connectedNodes{
+    input,
+    node,
+}
 */
+
 let states = []
 
 $(document).ready(function(){
@@ -20,10 +25,8 @@ $(document).ready(function(){
         const nodeId = getNodeId()
         let nodeText = `<div 
                 id='q${nodeId}' class='node'> 
-                    <p> Q${nodeId} <br> <span id="connected-0"></span> 
-                    <span id="seperator"></span> 
-                    <span id="connected-1"></span> 
-                    <p> 
+                    <p> Q${nodeId} </p> 
+                    <p id="q${nodeId}-input-details" class="input-details"></p>  
                 </div>`
        
         $('.draw-area').append(nodeText);
@@ -57,14 +60,26 @@ $(document).ready(function(){
         $(`#${frm}`).connections({ to: `#${to}` });
         $('#connect-form').modal('hide');
       
-           
-        if(!(states.includes(frm[1])))
-            console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
-        else if( !(states.includes(to[1])) )
-            console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
+        // Set up connection details on the node
+        let inputDetails = document.getElementById(`${frm}-input-details`);
+   
+        const nodeId = parseInt(frm[1]);
+        let cNodes = states[nodeId].connectedNodes;
 
-        
-        console.log(frm);
+        if(cNodes.length == 0)
+            inputDetails.textContent = `${input} -> ${to}`
+        else if(cNodes.length > 0)
+            inputDetails.textContent += ` | ${input} -> ${to}`
+      
+        cNodes.push({
+            'input': input,
+            'node': to
+        })
+        // Console print message
+        if(states.filter(n => n.id == frm[1]))
+            console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
+        else if(states.filter(n => n.id == to[1]) )
+            console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
        
     } );
 
