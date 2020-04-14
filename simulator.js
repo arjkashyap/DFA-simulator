@@ -4,6 +4,7 @@ states{
     id,
     connectedNodes[],
     selected
+    final
 }
 connectedNodes{
     input,
@@ -16,7 +17,7 @@ let states = []
 $(document).ready(function(){
 
     console_msg('Press Add state button to Add a new node in the diagram');
-
+ 
     // Button functions
     // Add Node on button click
     $('#add-state').click(function(){
@@ -68,7 +69,7 @@ $(document).ready(function(){
         runSimulation(inputStr);
     });
 
-    // Connect states with input
+    // Connect states to a node on specified input
     $('#add-transition-btn').click( function(){
         let frm = $('#from-state').val();
         let input = $('#state-input').val();
@@ -105,20 +106,44 @@ $(document).ready(function(){
        
     } );
 
+    // Function makes the seleced state as final state
+    $('#final-btn').click(function(){
+        let finalStateId = null;
+        states.forEach(n => {
+            if(n.selected){
+                n.final = true;
+                finalStateId = n.id;
+            }      
+        })
+        console.log('Final state: ' + finalStateId)
+        const state = document.getElementById(`q${finalStateId}`);
+        console.log(state.style)
+        state.style.border = '#1f3c7d 12px solid'
+    })
+
     // Functions if the node is selected
     function nodeCheckClick(){
-         states.forEach( n =>{
-             $(`#q${n.id}`).mousedown( () => {
-                n.selected = true;
-                disSelectAll(n);
-               })
-               .mouseup( () => {
-                    $(`#q${n.id}`).connections('update');
-                })
-           
-    
+        states.forEach( n =>{
+            $(`#q${n.id}`).mousedown( () => {
+            n.selected = true;
+            
+            disSelectAll(n);
+            })
+            .mouseup( () => {
+                $(`#q${n.id}`).connections('update');
+            })
+        });
 
-         });
+        if(states.length < 1)
+            $('#final-btn').hide();
+            
+        let selected = states.some( n => n.selected == true );
+        // Hide make final state button if no state is selected
+        if(!selected)
+            $('#final-btn').hide();
+        else
+            $('#final-btn').show();
+ 
      }
     setInterval(nodeCheckClick, 200);
 
@@ -168,6 +193,10 @@ $(document).ready(function(){
             console_msg('Draw A diagram to run simulator..', 1)
             return;
         }
+        
+        console_msg('Test Running. . .', 2);
+
+
     }
 
     // Print Messaages in console
@@ -178,6 +207,8 @@ $(document).ready(function(){
         let color = "blue";
         if(type == 1)
             color = "#068671";
+        else if(type == 2)
+            color = "green"
         const cons = document.getElementById('msg');
      
         cons.textContent = msg;
