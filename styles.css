@@ -59,6 +59,7 @@
 }
 
 .btn-container{
+  position: relative;
   align-items: center;
 }
 
@@ -74,4 +75,21 @@
 
 .input-details{
   font-size: 12px;
+}
+
+#q0{
+  position: absolute;
+  top: 35%;
+  float: left;
+}
+
+.input-info{
+  background-color: rgb(206, 206, 238);
+  border: #1f3c7d 2px solid;
+  height: 25px;
+  text-align: center;
+  color: #1f3c7d;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: large;
 }
