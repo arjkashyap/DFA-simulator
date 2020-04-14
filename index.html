@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DFA Simulator</title>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+      <title>DFA Simulator: Build and Test custom Machines</title>
 
+      <!-- Stylesheet and Bootstrap -->
+      <link rel="stylesheet" href="./styles.css">
+      <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+
+      
+      <!-- Jquery-->
+      <link rel="stylesheet" href="./jquery-ui/jquery-ui.css">
+      <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.css">
+      <link rel="stylesheet" href="jquery-ui/jquery-ui.structure.css">
+
+  </head>
+  
+  <body style="background-color: #b4c3eb;">
     
-    <!-- Jquery-->
-    <link rel="stylesheet" href="./jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.css">
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.structure.css">
-
-</head>
-<body style="background-color: #b4c3eb;">
     <div class="jumbotron" style="background-color: aliceblue; padding: 4px; margin-top: 3px;">
-        <div class="hd container">
-          <h1 class="hd1 display-6">DFA - Simulator</h1>
+      <div class="hd container">
+        <h1 class="hd1 display-6">DFA - Simulator</h1>
           <p class="lead"> Deterministic Finite Machine tester and simulator. Create and Test DFA </p>
-        </div>
+      </div>
     </div>
 
+    <!--Control pannel -->
     <div class="btn-container container">
       
-        <input type="button" id="add-state" class="btn-sm btn-primary" value="Add State">
+      <input type="button" id="add-state" class="btn-sm btn-primary" value="Add State">
+      <input type="button" id="connect-state" class="btn-sm btn-primary" value="State Transition">
+      <input type="button" id="del-state" class="btn-sm btn-primary" value="Delete State">
+      <input type="button" id="test-btn" class="btn btn-warning" value="Test String">
 
-        <input type="button" id="connect-state" class="btn-sm btn-primary" value="State Transition">
+    </div>
     
-        <input type="button" id="del-state" class="btn-sm btn-primary" value="Delete State">
-      
-        <input type="button" id="test-btn" class="btn btn-warning" value="Test String">
-
-    </div>
+    <!--Console -->
     <div class="console container">
-        <p>Console: <span id="msg" ></span></p>
+      <p>Console: <span id="msg" ></span></p>
     </div>
+
     <!-- Drawing Area -->
     <div class="draw-area container" >
       
       <!-- Modal for state connection -->
       <div class="modal fade" id="connect-form" tabindex="-1" role="dialog" aria-labelledby="State Transition" aria-hidden="true">
-        
+        <!--State Input detail form will append here -->
       </div>
 
       <!--Modal for Simulate-->
       <div class="modal fade" id="test-form" tabindex="-1" role="dialog" aria-labelledby="Test-DFA" aria-hidden="true">
-
+        <!--In put string form will be appended here -->
       </div>
 
     </div>
@@ -57,23 +62,19 @@
     <script src="./js/jquery-3.4.1.min.js" ></script>
     <script src="jquery.connections.js"></script>
     <script src="./divVars.js"></script>
-    <script src="./index.js"></script>
-    
+    <script src="./simulator.js"></script>
+      
     <script src="./jquery-ui/jquery-ui.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js" ></script>
+    
     <hr>
 
-<!-- Footer -->
-      <footer class="page-footer font-small blue pt-4">
-        <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">  
-        </div>
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-          <a href="http://bing101.github.io"> Bing</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="http://bing101.github.io"> Bing</a>
+      </div>
+    </footer>
       
   </body>
 </html>
