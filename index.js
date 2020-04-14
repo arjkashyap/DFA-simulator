@@ -30,7 +30,7 @@ $(document).ready(function(){
                 </div>`
        
         $('.draw-area').append(nodeText);
-        $(".node").draggable();
+        $(".node").draggable({containment: ".draw-area"});
         states.push({ id: nodeId, connectedNodes: [], selected: false, final:false });
 
     });
@@ -45,15 +45,34 @@ $(document).ready(function(){
         } )
     })
 
+    // Simulate button listener
+    $('#test-btn').click(() => {
+  
+        let div = divs.tstFormDiv
+        let tstForm = document.getElementById('test-form');
+        tstForm.innerHTML = div;
+        $('#test-form').modal('show');
+    })
+
     // Open state transition modal
-    $('#connect-state').click( () => $('#connect-form').modal('show') );
+    $('#connect-state').click( () => {
+        let connectForm = document.getElementById('connect-form');
+        connectForm.innerHTML = divs.connectForm;
+        $('#connect-form').modal('show') 
+    });
+
+    // Run siimulation listener
+    $('#run-btn').click( () => {
+        const inputStr = $('#input-str').val();
+        $('#test-form').modal('hide')
+        runSimulation(inputStr);
+    });
 
     // Connect states with input
     $('#add-transition-btn').click( function(){
         let frm = $('#from-state').val();
         let input = $('#state-input').val();
         let to = $('#to-state').val();
-        console.log(frm.toLowerCase())     
         frm = frm.toLowerCase();
         to = to.toLowerCase();
 
@@ -75,11 +94,14 @@ $(document).ready(function(){
             'input': input,
             'node': to
         })
+
         // Console print message
         if(states.filter(n => n.id == frm[1]))
             console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
         else if(states.filter(n => n.id == to[1]) )
             console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
+        
+        console.log(states)
        
     } );
 
@@ -89,11 +111,13 @@ $(document).ready(function(){
              $(`#q${n.id}`).mousedown( () => {
                 n.selected = true;
                 disSelectAll(n);
-               });
-            // Update connection when the drag is complete
-            $(`#q${n.id}`).mouseup( () => {
-                $(`#q${n.id}`).connections('update');
-            } )
+               })
+               .mouseup( () => {
+                    $(`#q${n.id}`).connections('update');
+                })
+           
+    
+
          });
      }
     setInterval(nodeCheckClick, 200);
@@ -107,7 +131,6 @@ $(document).ready(function(){
         })
     }
 
-   // $('.draw-area').mousedown(() => )
 
     // Check select state
     setInterval(() => {
@@ -119,8 +142,10 @@ $(document).ready(function(){
         } )
     }, 200);
 
+    // Generate New Node id
     function getNodeId(){
         let tmpId = states.length;
+        console.log(tmpId)
         // check if the id exists
         while(true){
             found = false;
@@ -134,6 +159,14 @@ $(document).ready(function(){
                 tmpId++;
             else
                 return tmpId;
+        }
+    }
+
+    // Run Simulation for a given input str
+    function runSimulation(inputStr){
+        if( states.length == 0 ){
+            console_msg('Draw A diagram to run simulator..', 1)
+            return;
         }
     }
 
