@@ -279,7 +279,7 @@ $(document).ready(function(){
             console_msg(`Test Case Passed, input ended at state q${currentState.id}` , 2);
         }
         else{
-            console_msg('Test Case Failed...');
+            console_msg('Input not accepted by DFA.');
         }
         
     }
