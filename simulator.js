@@ -25,6 +25,7 @@ $(document).ready(function(){
 
     console_msg('Press Add state button to Add a new node in the diagram and drag the node to custom positions');
     $('#q0').draggable({containment: ".draw-area"});
+
     // Button functions
     // Add Node on button click
     $('#add-state').click(function(){
@@ -74,10 +75,16 @@ $(document).ready(function(){
 
     // Run siimulation listener
     $('#run-btn').click( () => {
+        // reset validation
+        document.getElementById('input-str-validator').textContent = '';
         const inputStr = $('#input-str').val();
-        $('#test-form').modal('hide')
-    
-        runSimulation(inputStr);
+        if(inputStr == '')
+            document.getElementById('input-str-validator').textContent = 'Test string cannot be empty';
+        else{
+            $('#test-form').modal('hide')
+            runSimulation(inputStr);
+        }
+        
     });
 
     // Connect states to a node on specified input
@@ -276,10 +283,10 @@ $(document).ready(function(){
         console.log(currentState);
         if(currentState.final){
             console.log('Test Passed ....');
-            console_msg(`Test Case Passed, input ended at state q${currentState.id}` , 2);
+            console_msg(`Input String <span style="color: green"> ACCEPTED </span>, input ended at state q${currentState.id}` , 1);
         }
         else{
-            console_msg('Input not accepted by DFA.');
+            console_msg('Input string <span style="color: red">REJECTED</span> by DFA.', 1);
         }
         
     }
@@ -296,7 +303,7 @@ $(document).ready(function(){
             color = "red"
         const cons = document.getElementById('msg');
      
-        cons.textContent = msg;
+        cons.innerHTML = msg;
         cons.style.color = color
     }
 })
