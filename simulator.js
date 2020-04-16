@@ -23,12 +23,12 @@ let states = [
 
 $(document).ready(function(){
 
-    console_msg('Press Add state button to Add a new node in the diagram');
+    console_msg('Press Add state button to Add a new node in the diagram and drag the node to custom positions');
     $('#q0').draggable({containment: ".draw-area"});
     // Button functions
     // Add Node on button click
     $('#add-state').click(function(){
-        
+        console_msg('Inputs and transitions can be defined through state transition button')
         // Generate a node Id 
         const nodeId = getNodeId()
         let nodeText = `<div 
@@ -55,7 +55,18 @@ $(document).ready(function(){
 
     // Simulate button listener
     $('#test-btn').click(() => {
-        $('#test-form').modal('show');
+
+        // check if final state is defined
+        let finalStatePresent = false;
+        states.forEach( n => {
+            if(n.final == true)
+                finalStatePresent = true;
+        } )
+        
+        if(finalStatePresent)        
+            $('#test-form').modal('show');
+        else
+            console_msg('No Final State Specified in the Diagram. Select a state and press Make Final State', 2);
     })
 
     // Open state transition modal
@@ -64,8 +75,8 @@ $(document).ready(function(){
     // Run siimulation listener
     $('#run-btn').click( () => {
         const inputStr = $('#input-str').val();
-        console.log(inputStr)
         $('#test-form').modal('hide')
+    
         runSimulation(inputStr);
     });
 
@@ -77,36 +88,73 @@ $(document).ready(function(){
         frm = frm.toLowerCase();
         to = to.toLowerCase();
 
-        $(`#${frm}`).connections({ to: `#${to}` });
-        $('#connect-form').modal('hide');
-      
-        console.log(frm)
-        // Set up connection details on the node
-        let inputDetails = document.getElementById(`${frm}-input-details`);
+        if( transitionValidated(frm, input, to) ){
+            // Connect states
+            $(`#${frm}`).connections({ to: `#${to}` });
+            $('#connect-form').modal('hide');
+    
+            // Set up connection details on the node
+            let inputDetails = document.getElementById(`${frm}-input-details`);
    
-        const nodeId = parseInt(frm[1]);
-        let cNodes = states[nodeId].connectedNodes;
+            const nodeId = parseInt(frm[1]);
+            let cNodes = states[nodeId].connectedNodes;
        
-        if(cNodes.length == 0)
-            inputDetails.textContent = `${input} -> ${to}`
-        else if(cNodes.length > 0)
-            inputDetails.textContent += ` | ${input} -> ${to}`
+            if(cNodes.length == 0)
+                inputDetails.textContent = `${input} -> ${to}`
+             else if(cNodes.length > 0)
+                inputDetails.textContent += ` | ${input} -> ${to}`
         
         
-        cNodes.push({
-            input: input,
-            state: to[1]
+            cNodes.push({
+                input: input,
+                state: to[1]
+            })
+            // Print message on console
+            console_msg(`State Transition specified from ${frm} to ${to} for input ${input}`, 1)
+        } 
+
+        
+    } );
+
+    // Validation for state transition form
+    function transitionValidated(from, input, to){
+        document.getElementById('frm-validate').textContent = ``;
+        document.getElementById('input-validate').textContent = ``;
+        document.getElementById('to-validate').textContent = ``;
+        
+        let fromStatePresent = false, toStatePresent = false, inputPresent = false;
+        const f = from[1];
+        const i = input;
+        const t = to[1];
+        
+        states.forEach( n => {
+            if(n.id == f){
+                fromStatePresent = true;
+                if( (n.connectedNodes.filter( c => c.input === i).length ) )
+                    inputPresent = true;
+            }
+            if(n.id == t){
+                toStatePresent = true;
+            }
         })
 
-        console.log(states)
-        // Console print message
-        if(states.filter(n => n.id == frm[1]))
-            console_msg(`State ${frm} not found.. Make Sure you Entered the right name`, 1)
-        else if(states.filter(n => n.id == to[1]) )
-            console_msg(`State ${to} not found.. Make Sure you Enterd the right name`, 1)
+        if(!fromStatePresent)
+            document.getElementById('frm-validate').textContent = `State ${from} is not present in diagram. Enter a valid state name`;
         
-       
-    } );
+        if(inputPresent)
+            document.getElementById('input-validate').textContent = `Specified input ${input} is already defined in the state ${from}`;
+        if(input == '')
+            document.getElementById('input-validate').textContent = `Input cannot be empty filed`;
+            
+
+        if(!toStatePresent)
+            document.getElementById('to-validate').textContent = `State ${to} is not present in diagram. Enter a valid state name`;
+
+        if(fromStatePresent && toStatePresent && !(inputPresent) && input !='')
+            return true;
+        
+        return false
+    }
 
     // Function makes the seleced state as final state
     $('#final-btn').click(function(){
@@ -195,24 +243,16 @@ $(document).ready(function(){
         
         console_msg('Test Running. . .', 2);
         document.getElementById('test-string-disp').textContent = inputStr;
-        console.log(states)
         // Pointer startes at node zero
         let statePtr = states[0].id;
         let currentState = states[statePtr];
-        console.log('statePtr: ' + statePtr);
-        console.log(states[statePtr]);
         let inputPtr = 0;               // Points to the index in input string
         let input = null;
         while(inputPtr < inputStr.length){
             let nextStateIndex = null;
             input = inputStr[inputPtr];
-        
-            console.log('Input: ' + input);
-    
-            console.log('current state')
-            console.log(currentState)
-            
-            // Check for the state transition corrosponding to input
+
+            // Find the state transition corrosponding to input
             currentState.connectedNodes.forEach( n => {
                 if(n.input == input){
                     nextStateIndex =  n.state;
@@ -227,7 +267,6 @@ $(document).ready(function(){
             }
 
             console.log('next state Index')
-            console.log(nextStateIndex);
             currentState = states[nextStateIndex];            
             inputPtr++;
         }
@@ -237,7 +276,7 @@ $(document).ready(function(){
         console.log(currentState);
         if(currentState.final){
             console.log('Test Passed ....');
-            console_msg('Test Case Passed.. ', 2);
+            console_msg(`Test Case Passed, input ended at state q${currentState.id}` , 2);
         }
         else{
             console_msg('Test Case Failed...');
@@ -248,13 +287,13 @@ $(document).ready(function(){
     // Print Messaages in console
     function console_msg(msg, type=0){
         // type 0: Instruction
-        // type 1 : Warning
+        // type 1 : Info
         // type 2 : Error
         let color = "blue";
         if(type == 1)
             color = "#068671";
         else if(type == 2)
-            color = "green"
+            color = "red"
         const cons = document.getElementById('msg');
      
         cons.textContent = msg;

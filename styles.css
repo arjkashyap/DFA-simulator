@@ -43,7 +43,7 @@
   }
 
 .console{
-  height: 25px;
+  height: 35px;
   border: #1f3c7d 2px solid;
   margin-bottom: 0;
   margin-top: 1px;
@@ -51,9 +51,9 @@
 }
 
 .console p{
-  color: #c20e0e;
+  color:rgb(38, 38, 107);
   font-family: monospace;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   text-align: left;
 }
@@ -92,4 +92,11 @@
   font-weight: bold;
   font-family: monospace;
   font-size: large;
+}
+
+.validators{
+  font-size: 14px;
+  color: crimson;
+  
+
 }
