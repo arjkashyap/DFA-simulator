@@ -29,197 +29,228 @@
       </div>
     </div>
 
-    <!--Control pannel -->
-    <div class="btn-container container">
-      <input
-        type="button"
-        id="add-state"
-        class="btn-sm btn-primary"
-        value="Add State"
-      />
-      <input
-        type="button"
-        id="connect-state"
-        class="btn-sm btn-primary"
-        value="State Transition"
-      />
-      <input
-        type="button"
-        id="del-state"
-        class="btn-sm btn-primary"
-        value="Delete State"
-      />
-      <input
-        type="button"
-        id="final-btn"
-        class="btn-sm btn-info"
-        value="Make Final State"
-      />
-      <input
-        type="button"
-        id="test-btn"
-        class="btn btn-warning"
-        value="Test String"
-      />
-    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-10">
+          <!--Control pannel -->
+          <div class="btn-container container">
+            <input
+              type="button"
+              id="add-state"
+              class="btn-sm btn-primary"
+              value="Add State"
+            />
+            <input
+              type="button"
+              id="connect-state"
+              class="btn-sm btn-primary"
+              value="State Transition"
+            />
+            <input
+              type="button"
+              id="del-state"
+              class="btn-sm btn-primary"
+              value="Delete State"
+            />
+            <input
+              type="button"
+              id="final-btn"
+              class="btn-sm btn-info"
+              value="Make Final State"
+            />
+            <input
+              type="button"
+              id="test-btn"
+              class="btn btn-warning"
+              value="Test String"
+            />
+          </div>
 
-    <!--Console -->
-    <div class="console container">
-      <p>Console: <span id="msg"></span></p>
-    </div>
+          <!--Console -->
+          <div class="console container">
+            <p>Console: <span id="msg"></span></p>
+          </div>
 
-    <!-- Drawing Area -->
-    <div class="draw-area container">
-      <div id="q0" class="node">
-        <p>Q0</p>
-        <p id="q0-input-details" class="input-details"></p>
-      </div>
-
-      <!-- Modal for state connection -->
-      <div
-        class="modal fade"
-        id="connect-form"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="State Transition"
-        aria-hidden="true"
-      >
-        <!--State Input detail form will append here -->
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Add a State Transition
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <!-- Drawing Area -->
+          <div class="draw-area container">
+            <div id="q0" class="node">
+              <p>Q0</p>
+              <p id="q0-input-details" class="input-details"></p>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label id="from-state-lbl">From </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="from-state"
-                    placeholder="Name of the state which takes the input"
-                  />
-                  <p id="frm-validate" class="validators"></p>
+
+            <!-- Modal for state connection -->
+            <div
+              class="modal fade"
+              id="connect-form"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="State Transition"
+              aria-hidden="true"
+            >
+              <!--State Input detail form will append here -->
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                      Add a State Transition
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label id="from-state-lbl">From </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="from-state"
+                          placeholder="Name of the state which takes the input"
+                        />
+                        <p id="frm-validate" class="validators"></p>
+                      </div>
+
+                      <hr />
+
+                      <div class="form-group">
+                        <label id="from-state-lbl">Input </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="state-input"
+                          placeholder="State Input"
+                        />
+                        <p id="input-validate" class="validators"></p>
+                      </div>
+
+                      <hr />
+
+                      <div class="form-group">
+                        <label id="to-state-lbl">To State </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="to-state"
+                          placeholder="Name of the state where the transition takes"
+                        />
+                        <p id="to-validate" class="validators"></p>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      id="add-transition-btn"
+                      class="btn btn-primary"
+                    >
+                      Connect states
+                    </button>
+                  </div>
                 </div>
-
-                <hr />
-
-                <div class="form-group">
-                  <label id="from-state-lbl">Input </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="state-input"
-                    placeholder="State Input"
-                  />
-                  <p id="input-validate" class="validators"></p>
-                </div>
-
-                <hr />
-
-                <div class="form-group">
-                  <label id="to-state-lbl">To State </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="to-state"
-                    placeholder="Name of the state where the transition takes"
-                  />
-                  <p id="to-validate" class="validators"></p>
-                </div>
-              </form>
+              </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                id="add-transition-btn"
-                class="btn btn-primary"
-              >
-                Connect states
-              </button>
+
+            <!--Modal for Simulate-->
+            <div
+              class="modal fade"
+              id="test-form"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="Test-DFA"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                      Test Your DFA
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label id="tst-str">Input String </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="input-str"
+                          placeholder="Enter the input string to test machine"
+                        />
+                        <p id="input-str-validator" class="validators"></p>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button type="button" id="run-btn" class="btn btn-success">
+                      Run Simulation
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!--Modal for Simulate-->
-      <div
-        class="modal fade"
-        id="test-form"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="Test-DFA"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Test Your DFA
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label id="tst-str">Input String </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-sm"
-                    id="input-str"
-                    placeholder="Enter the input string to test machine"
-                  />
-                  <p id="input-str-validator" class="validators"></p>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button type="button" id="run-btn" class="btn btn-success">
-                Run Simulation
-              </button>
-            </div>
+          <!-- Input string Display-->
+          <div class="input-info container">
+            <p id="test-string-disp">String Test Info</p>
           </div>
         </div>
+
+        <!-- Rules container -->
+        <div id="rule-box" class="col-xl-2" style="padding: 4px;">
+          <h3 id="rule-header">DFA Rules</h3>
+          <ul class="list-group">
+            <li class="list-group-item">
+              DFA refers to deterministic finite automata. Deterministic refers
+              to the uniqueness of the computation. The finite automata are
+              called deterministic finite automata if the machine is read an
+              input string one symbol at a time.
+            </li>
+            <li class="list-group-item">
+              In DFA, there is only one path for specific input from the current
+              state to the next state.
+            </li>
+            <li class="list-group-item">
+              DFA does not accept the null move, i.e., the DFA cannot change
+              state without any input character.
+            </li>
+
+            <li class="list-group-item">
+              DFA can contain multiple final states.
+            </li>
+          </ul>
+        </div>
+        <!-- Rules container Ends-->
       </div>
     </div>
-
-    <!-- Input string Display-->
-    <div class="input-info container">
-      <p id="test-string-disp">String Test Info</p>
-    </div>
-
     <!-- Scripts-->
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="jquery.connections.js"></script>
@@ -231,12 +262,12 @@
 
     <hr />
 
-    <!-- Footer -->
+    <!-- Footer
     <footer class="page-footer font-small blue pt-4">
       <div class="footer-copyright text-center py-3">
         © 2020 Copyright:
         <a href="http://bing101.github.io"> Bing</a>
       </div>
-    </footer>
+    </footer> -->
   </body>
 </html>

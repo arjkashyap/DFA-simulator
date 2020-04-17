@@ -96,3 +96,25 @@
   color: crimson;
 }
 
+#rule-box {
+  margin-right: auto;
+  width: max-content;
+  background-color: rgb(206, 206, 238);
+  border: #1f3c7d 3px solid;
+}
+
+#rule-box h3 {
+  text-align: center;
+  color: #637dc7;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+#rule-box li {
+  background-color: rgb(217, 217, 228);
+  text-align: center;
+  color: #1f3c7d;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: large;
+}
