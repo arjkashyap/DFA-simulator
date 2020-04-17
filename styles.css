@@ -1,48 +1,45 @@
-
-.hd{
-    font-family: monospace;
-    text-align: center;
-    font-size: small;
-    font-style: oblique;
-    
+.hd {
+  font-family: monospace;
+  text-align: center;
+  font-size: small;
+  font-style: oblique;
 }
 
-.hd1{
-    text-align: center;
-    color: #637dc7;
-    font-weight: bold;
-    font-family: monospace;
-    
+.hd1 {
+  text-align: center;
+  color: #637dc7;
+  font-weight: bold;
+  font-family: monospace;
 }
 
-.draw-area{
-    background-color: aliceblue;
-    height: 600px; 
-    width: 600px;
-    position: relative;
-    border: rgb(38, 38, 107) 5px solid;
-  }
+.draw-area {
+  background-color: aliceblue;
+  height: 600px;
+  width: 600px;
+  position: relative;
+  border: rgb(38, 38, 107) 5px solid;
+}
 
-  .node{
-    border: #1f3c7d 2px solid;
-    text-align: center;
-    border-radius: 40%;
-    background-color: #577ee8;
-    position: absolute;
-    width: 120px;
-    height: 90px;
-    margin: 0 auto;
-    padding: 10px;
-  }
+.node {
+  border: #1f3c7d 2px solid;
+  text-align: center;
+  border-radius: 40%;
+  background-color: #577ee8;
+  position: absolute;
+  width: 120px;
+  height: 90px;
+  margin: 0 auto;
+  padding: 10px;
+}
 
-  .node p{
-    margin: 0;
-    color: white;
-    font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
+.node p {
+  margin: 0;
+  color: white;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
-.console{
+.console {
   height: 35px;
   border: #1f3c7d 2px solid;
   margin-bottom: 0;
@@ -50,40 +47,40 @@
   background-color: rgb(206, 206, 238);
 }
 
-.console p{
-  color:rgb(38, 38, 107);
+.console p {
+  color: rgb(38, 38, 107);
   font-family: monospace;
   font-size: 18px;
   font-weight: bold;
   text-align: left;
 }
 
-.btn-container{
+.btn-container {
   position: relative;
   align-items: center;
 }
 
-#msg{
+#msg {
   color: rgb(47, 155, 119);
 }
 
-#connected{
+#connected {
   text-align: center;
   color: white;
   font-size: 12px;
 }
 
-.input-details{
+.input-details {
   font-size: 12px;
 }
 
-#q0{
+#q0 {
   position: absolute;
   top: 35%;
   float: left;
 }
 
-.input-info{
+.input-info {
   background-color: rgb(206, 206, 238);
   border: #1f3c7d 2px solid;
   height: 25px;
@@ -94,9 +91,8 @@
   font-size: large;
 }
 
-.validators{
+.validators {
   font-size: 14px;
   color: crimson;
-  
-
 }
+
