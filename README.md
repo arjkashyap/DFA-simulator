@@ -41,8 +41,12 @@ This is a software which lets you build DFA diagrams on a drawing area and test 
 <li> Specify the Input and the states which are to be connected.</li>
 <li> After the diagram is complete, press Test string button (make sure you have specified a final state)</li>
 <li> Enter an input string. Make sure the chars in the string are the same as the inputs taken for state transitions and Run</li>
+<li> Depending upon the result of the string test, the console shows one of the following message </li>
 </ul>
-
+<p> Test Accepted </p>
+<img src="./img/DFAImg5.PNG">
+<p> Test Rejected </p>
+<img src="./img/DFAImg4.PNG">
 <hr/>
 
 <h3>Contribution</h3>
