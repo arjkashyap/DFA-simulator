@@ -30,13 +30,13 @@
 <p>
 This is a software which lets you build DFA diagrams on a drawing area and test it with custom input strings.
 </p>
-<img src="./img/DFAImg1.png"/>
+  <img src="./img/DFAImg1.PNG"/>
 <hr/>
 <h4> Run:  </h4>
 <ul>
 <li> Clone this repositor and open index.html </li>
 <li> Press Add new state button and drag the button to your required position.  Connect states using state transition button. A form will appear which will require inputs such as the image shown below.</li>
-<img src="./img/DFAImg2.png">
+   <img src="./img/DFAImg2.PNG"/>
 
 <li> Specify the Input and the states which are to be connected.</li>
 <li> After the diagram is complete, press Test string button (make sure you have specified a final state)</li>
